@@ -1,0 +1,51 @@
+/* Each option is a class on <html>, toggled by content.js.
+   Selectors target message content directly (class names like
+   .selectable-text / .copyable-text and [data-id] have been stable for years)
+   rather than relying on #main or role="row". */
+
+/* ---------- Messages: text ---------- */
+html.wb-on.wb-messages :is(.copyable-text, .selectable-text, [data-pre-plain-text]):not([id="pane-side"] *):not(footer *):not(header *) {
+  filter: blur(8px) !important;
+}
+
+/* ---------- Messages: images, videos, stickers, voice notes, docs ---------- */
+html.wb-on.wb-messages :is([data-id^="true_"], [data-id^="false_"], .message-in, .message-out) :is(img, video, canvas, audio, [role="button"]):not([id="pane-side"] *):not(footer *) {
+  filter: blur(14px) !important;
+}
+
+/* ---------- Chat list: names ---------- */
+html.wb-on.wb-names :is(#pane-side span[title], header span[title], header [title]) {
+  filter: blur(6px) !important;
+}
+
+/* ---------- Chat list: last-message previews ---------- */
+html.wb-on.wb-previews #pane-side :is([role="listitem"], [role="row"], [data-testid="cell-frame-container"]) :is(span[dir="ltr"], span[dir="auto"]:not([title])) {
+  filter: blur(6px) !important;
+}
+
+/* ---------- Profile pictures ---------- */
+html.wb-on.wb-avatars :is(#pane-side img, header img) {
+  filter: blur(8px) !important;
+}
+
+/* ---------- Message input box ---------- */
+html.wb-on.wb-compose footer {
+  filter: blur(6px) !important;
+}
+
+/* ---------- Reveal on hover ---------- */
+html.wb-on.wb-hover.wb-messages:not(#wb-x) :is([data-id^="true_"], [data-id^="false_"], .message-in, .message-out, div[role="row"]):hover :is(.copyable-text, .selectable-text, [data-pre-plain-text], img, video, canvas, audio, [role="button"]) {
+  filter: none !important;
+}
+html.wb-on.wb-hover.wb-names :is(#pane-side [role="listitem"], #pane-side [role="row"], header):hover :is(span[title], [title]) {
+  filter: none !important;
+}
+html.wb-on.wb-hover.wb-previews #pane-side :is([role="listitem"], [role="row"], [data-testid="cell-frame-container"]):hover :is(span[dir="ltr"], span[dir="auto"]) {
+  filter: none !important;
+}
+html.wb-on.wb-hover.wb-avatars :is(#pane-side [role="listitem"], #pane-side [role="row"], header):hover img {
+  filter: none !important;
+}
+html.wb-on.wb-hover.wb-compose footer:hover {
+  filter: none !important;
+}
